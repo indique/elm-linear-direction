@@ -5,16 +5,24 @@ I think direction can be better expressed than in
 - `foldr` and `foldl`: does `foldr` mean fold right? A quite unclear name
 - `Array.slice`'s negative indices: `slice 0 -1` is handy! But you can't do `slice 2 -0`
 - no `getr/l`, `setr/l`, ... but `foldr` and `foldl`?
+
 This package's simple goal is allowing you to use types containing the direction
 
+```elm
+import LinearDirection exposing (LinearDirection(..))
+import LinearDirection.Array as Array
+
+Array.fromList [ "e", "l", "m" ]
+    |> Array.fold LastToFirst (+) ""
+--> "elm"
+```
+
 This has some neat advantages.
+
 - You can deal with both directions at once
     ```elm
     import LinearDirection exposing (LinearDirection(..))
-
-    Array.fromList [ "e", "l", "m" ]
-        |> Array.fold LastToFirst (+) ""
-    --> "elm"
+    import LinearDirection.Array as Array
 
     updateAt : Int -> LinearDirection -> (a -> a) -> Array a -> Array a
     updateAt index direction alter =
