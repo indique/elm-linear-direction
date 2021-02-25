@@ -1,6 +1,6 @@
-module Try.N.Linear.Direction exposing (opposite, toFirstToLast)
+module Linear.Direction exposing (opposite, toFirstToLast)
 
-import Try.N.Linear exposing (Direction(..))
+import Linear exposing (Direction(..))
 
 
 opposite : Direction -> Direction

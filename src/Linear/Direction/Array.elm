@@ -1,8 +1,8 @@
-module Try.N.Linear.Direction.Array exposing (at, fold, insertAt, removeAt, take)
+module Linear.DirectioArray exposing (at, fold, insertAt, removeAt, take)
 
 import Array exposing (Array)
-import Try.N.Linear exposing (Direction(..))
-import Try.N.Linear.Direction as Direction
+import Linear exposing (Direction(..))
+import Linear.Direction as Direction
 
 
 fold :
@@ -45,7 +45,7 @@ removeAt index direction =
     \array ->
         let
             firstToLastIndex =
-                Direction.toFirstToLast index
+                DirectiotoFirstToLast index
                     direction
                     { length = Array.length array }
 
@@ -61,7 +61,7 @@ removeAt index direction =
 at : Int -> Direction -> Array a -> Maybe a
 at index direction =
     \array ->
-        Array.get (Direction.toFirstToLast index direction { length = Array.length array }) array
+        Array.get (DirectiotoFirstToLast index direction { length = Array.length array }) array
 
 
 take : Int -> Direction -> Array a -> Array a
