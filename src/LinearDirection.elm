@@ -15,6 +15,8 @@ type LinearDirection
     | LastToFirst
 
 
+{-| The other direction. `LastToFirst` ⇆ `FirstToLast`
+-}
 opposite : LinearDirection -> LinearDirection
 opposite direction =
     case direction of
