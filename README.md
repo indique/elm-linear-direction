@@ -2,26 +2,24 @@
 
 
 I think direction can be better expressed than in
-- `foldr` and `foldl`: does `foldr` mean fold right? Unclear in my opinion
+- `foldr` and `foldl`: does `foldr` mean fold right? A quite unclear name
 - `Array.slice`'s negative indices: `slice 0 -1` is handy! But you can't do `slice 2 -0`
-- Why is there no `getr/l`, `setr/l`, ... if there is `foldr` and `foldl`?
+- no `getr/l`, `setr/l`, ... but `foldr` and `foldl`?
 This package's simple goal is allowing you to use types containing the direction
 
 This has some neat advantages.
+- You can deal with both directions at once
+    ```elm
+    import LinearDirection exposing (LinearDirection(..))
 
-Array.fold LastToFirst (+) 0
+    Array.fromList [ "e", "l", "m" ]
+        |> Array.fold LastToFirst (+) ""
+    --> "elm"
 
-Array.fromList [ 1, 2, 3 ]
-    |> putFrom FirstToLast
---> Array.fromList [ 2, 3, 1 ]
+    updateAt : Int -> LinearDirection -> (a -> a) -> Array a -> Array a
+    updateAt index direction alter =
+        Array.replaceAt index direction
+            (alter (Array.at index direction))
 
-Array.fromList [ 1, 2, 3 ]
-    |> putFrom LastToFirst
---> Array.fromList [ 3, 1, 2 ]
-
-
-putFrom : Linear.Direction -> Array a -> Array a
-putFrom direction =
-    Array.removeAt 0 direction
-        >> Array.insertAt 0 (Direction.opposite direction)
-
+    ```
+- this also results in less clutter (e.g. one `fold` instead of `foldr` `foldl`)
