@@ -1,6 +1,6 @@
 module LinearDirection.Array exposing (fold, take, at, replaceAt, removeAt, insertAt)
 
-{-| `Array` operations that can be appled in either direction.
+{-| `Array` operations that can be applied in either direction.
 
 @docs fold, take, at, replaceAt, removeAt, insertAt
 
@@ -13,7 +13,13 @@ import LinearDirection.Unexposed exposing (toFirstToLast)
 
 {-| Reduce an `Array` in a direction.
 
-    Array.fromList [ "elm", "wood" ]
+    Array.fromList [ "l", "i", "v", "e" ]
+        |> Array.fold FirstToLast (++) ""
+    --> "live"
+
+    Array.fromList [ "l", "i", "v", "e" ]
+        |> Array.fold LastToFirst (++) ""
+    --> "evil"
 
 -}
 fold :
@@ -33,20 +39,21 @@ fold direction reduce initial =
 
 {-| Put an element in an `Array` at a given index in a direction.
 
-    acd =
-        Array.fromList [ 'a', 'c', 'd' ]
-
-    acd |> Array.insertAt 1 FirstToLast 'b'
+    Array.fromList [ 'a', 'c', 'd' ]
+        |> Array.insertAt 1 FirstToLast 'b'
     --> Array.fromList [ 'a', 'b', 'c', 'd' ]
-    acd |> Array.insertAt 2 LastToFirst 'b'
+    Array.fromList [ 'a', 'c', 'd' ]
+        |> Array.insertAt 2 LastToFirst 'b'
     --> Array.fromList [ 'a', 'b', 'c', 'd' ]
 
 If the index is out of bounds, nothing gets inserted.
 
-    acd |> Array.insertAt -1 'b'
-    --> acd
-    acd |> Array.insertAt 10 'b'
-    --> acd
+    Array.fromList [ 'a', 'c', 'd' ]
+        |> Array.insertAt -1 'b'
+    --> Array.fromList [ 'a', 'c', 'd' ]
+    Array.fromList [ 'a', 'c', 'd' ]
+        |> Array.insertAt 10 'b'
+    --> Array.fromList [ 'a', 'c', 'd' ]
 
 -}
 insertAt : Int -> LinearDirection -> a -> Array a -> Array a
@@ -96,7 +103,7 @@ removeAt index direction array =
         True ->
             let
                 firstToLastIndex =
-                    LinearDirection.toFirstToLast index
+                    toFirstToLast index
                         direction
                         { length = Array.length array }
 
@@ -112,7 +119,7 @@ removeAt index direction array =
             array
 
 
-{-| Return `Just` the element at an index in a direction.
+{-| `Just` the element at an index in a direction.
 
     Array.fromList [ "lose", "win", "lose" ]
         |> Array.at 0 LastToFirst
@@ -122,7 +129,7 @@ removeAt index direction array =
         |> Array.at 0 FirstToLast
     --> Just "lose"
 
-If the index is out of range, return `Nothing`.
+`Nothing`, if the index is out of range.
 
     Array.fromList [ 1, 2, 3 ]
         |> Array.at -1
@@ -132,7 +139,7 @@ If the index is out of range, return `Nothing`.
 at : Int -> LinearDirection -> Array a -> Maybe a
 at index direction array =
     Array.get
-        (LinearDirection.toFirstToLast index
+        (toFirstToLast index
             direction
             { length = Array.length array }
         )
@@ -164,7 +171,7 @@ replaceAt :
     -> Array element
 replaceAt index direction new array =
     Array.set
-        (LinearDirection.toFirstToLast index
+        (toFirstToLast index
             direction
             { length = Array.length array }
         )
