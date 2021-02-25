@@ -1,5 +1,7 @@
 module LinearDirection.Unexposed exposing (toFirstToLast)
 
+import LinearDirection exposing (LinearDirection(..))
+
 
 toFirstToLast : Int -> LinearDirection -> { length : Int } -> Int
 toFirstToLast n direction { length } =
