@@ -12,7 +12,7 @@ This package's simple goal is allowing you to use the direction as an argument.
 import LinearDirection exposing (LinearDirection(..))
 import LinearDirection.Array as Array
 
-Array.fromList [ "e", "l", "m" ]
+Array.fromList [ "m", "l", "e" ]
     |> Array.fold LastToFirst (+) ""
 --> "elm"
 ```
