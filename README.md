@@ -6,7 +6,7 @@ I think direction can be better expressed than in
 - `Array.slice`'s negative indices: `slice 0 -1` is handy! But you can't do `slice 2 -0`
 - no `getr/l`, `setr/l`, ... but `foldr` and `foldl`?
 
-This package's simple goal is allowing you to use types containing the direction
+This package's simple goal is allowing you to use the direction as an argument.
 
 ```elm
 import LinearDirection exposing (LinearDirection(..))
