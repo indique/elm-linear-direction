@@ -1,13 +1,14 @@
 ## Contribute
 
-**Contribution of any kind is appreciated! 💙**
+**Contributing is appreciated! 💙**
 
-* Changes may be suggested through pull requests.
-* To discuss major changes, open up a feature request issue.
+- Changes may be suggested through pull requests.
+- To discuss major changes, open up a feature request issue.
 
 ## What you can do
 
 - add new methods like `group`, `splitAt` ...
+- add new modules like `LinearDirection.List`
 - share your thoughts
 
 ### Summary Guide
