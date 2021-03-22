@@ -13,11 +13,13 @@ import LinearDirection exposing (LinearDirection(..))
 import LinearDirection.Array as Array
 
 Array.fromList [ "m", "l", "e" ]
-    |> Array.fold LastToFirst (+) ""
+    |> Array.fold LastToFirst (++) ""
 --> "elm"
 ```
 
 This has some neat advantages.
+
+- this also results in less clutter (e.g. one `fold` instead of `foldr` `foldl`)
 
 - You can deal with both directions at once
     ```elm
@@ -30,4 +32,3 @@ This has some neat advantages.
             (alter (Array.at index direction))
 
     ```
-- this also results in less clutter (e.g. one `fold` instead of `foldr` `foldl`)
