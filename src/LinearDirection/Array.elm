@@ -58,27 +58,26 @@ If the index is out of bounds, nothing gets inserted.
 -}
 insertAt : Int -> LinearDirection -> a -> Array a -> Array a
 insertAt index direction element array =
-    case index >= 0 && index <= Array.length array of
-        True ->
-            let
-                indexAfterElement =
-                    case direction of
-                        FirstToLast ->
-                            index
+    if index >= 0 && index <= Array.length array then
+        let
+            indexAfterElement =
+                case direction of
+                    FirstToLast ->
+                        index
 
-                        LastToFirst ->
-                            Array.length array - index
+                    LastToFirst ->
+                        Array.length array - index
 
-                before =
-                    Array.slice 0 indexAfterElement array
+            before =
+                Array.slice 0 indexAfterElement array
 
-                after =
-                    Array.slice indexAfterElement (Array.length array) array
-            in
-            Array.append (Array.push element before) after
+            after =
+                Array.slice indexAfterElement (Array.length array) array
+        in
+        Array.append (Array.push element before) after
 
-        False ->
-            array
+    else
+        array
 
 
 {-| Kick an element out of an `Array` at a given index in a direction.
@@ -99,24 +98,23 @@ If the index is out of bounds, the `Array` is unaltered.
 -}
 removeAt : Int -> LinearDirection -> Array a -> Array a
 removeAt index direction array =
-    case index >= 0 && index <= Array.length array of
-        True ->
-            let
-                firstToLastIndex =
-                    toFirstToLast index
-                        direction
-                        { length = Array.length array }
+    if index >= 0 && index <= Array.length array then
+        let
+            firstToLastIndex =
+                toFirstToLast index
+                    direction
+                    { length = Array.length array }
 
-                before =
-                    Array.slice 0 firstToLastIndex array
+            before =
+                Array.slice 0 firstToLastIndex array
 
-                after =
-                    Array.slice (firstToLastIndex + 1) (Array.length array) array
-            in
-            Array.append before after
+            after =
+                Array.slice (firstToLastIndex + 1) (Array.length array) array
+        in
+        Array.append before after
 
-        False ->
-            array
+    else
+        array
 
 
 {-| `Just` the element at an index in a direction.
