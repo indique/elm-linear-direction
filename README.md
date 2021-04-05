@@ -1,34 +1,24 @@
-## elm-linear-direction
+> Github username changed.
+> **Moved to [lue-bird/elm-linear-direction](https://package.elm-lang.org/packages/lue-bird/elm-linear-direction/latest/)**
 
+Just ignore `Moved`, it's just a dummy module that must be published.
 
-I think direction can be better expressed than in
-- `foldr` and `foldl`: does `foldr` mean fold right? A quite unclear name
-- `Array.slice`'s negative indices: `slice 0 -1` is handy! But you can't do `slice 2 -0`
-- no `getr/l`, `setr/l`, ... but `foldr` and `foldl`?
+There also needs to be more text here.
 
-This package's simple goal is allowing you to use the direction as an argument.
+I like text.
+
+Text is useful.
 
 ```elm
-import LinearDirection exposing (LinearDirection(..))
-import LinearDirection.Array as Array
-
-Array.fromList [ "m", "l", "e" ]
-    |> Array.fold LastToFirst (++) ""
---> "elm"
+dummyExample : Never
 ```
 
-This has some neat advantages.
+This example shown nothing.
 
-- this also results in less clutter (e.g. one `fold` instead of `foldr` `foldl`)
+Thanks for your interest.
 
-- You can deal with both directions at once
-    ```elm
-    import LinearDirection exposing (LinearDirection(..))
-    import LinearDirection.Array as Array
+```elm
+iDontKnowHowMuchMore : ()
+```
 
-    updateAt : Int -> LinearDirection -> (a -> a) -> Array a -> Array a
-    updateAt index direction alter =
-        Array.replaceAt index direction
-            (alter (Array.at index direction))
-
-    ```
+It seems like you now understand everything.
