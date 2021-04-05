@@ -1,6 +1,6 @@
 {
     "type": "package",
-    "name": "indique/elm-bounded-nat",
+    "name": "indique/elm-linear-direction",
     "summary": "natural number in a range at compile-time",
     "license": "MIT",
     "version": "2.0.0",
